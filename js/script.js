@@ -18,16 +18,23 @@ const quotes = [
    quote: `I am not who you think I am; 
            I am not who I think I am; 
            I am who I think you think I am.`,
-   source: `Charles Cooley`
+   source: `Charles Cooley`,
+   citation: `Inscriptions: Praire Poetry`,
+   year: 1992
+
   },
   {
-   quote: `The only true wisdom is knowing you know nothing.`,
-   source: `Socrates`
+   quote: `The more we define ourselves in relation to the people around us, 
+           the more lost we are.`,
+   source: `Jay Shetty`,
+   citation: `Think Like a Monk`,
+   year: 2020
   },
   {
-   quote: `It is better to change an opinion than to persist 
-           in a wrong one.`,
-   source: `Socrates`
+   quote: `If you don’t break your ego, life will break it for you.`,
+   source: `Jay Shetty`,
+   citation: `Think Like a Monk`,
+   year: 2020
   },
   {
    quote: `Sometimes you put walls up not to keep people out, 
@@ -35,9 +42,11 @@ const quotes = [
    source: `Socrates`
   },
   {
-   quote: `Think about what you can do right now, not what you 
-           wish you had done before.`,
-   source: `Jay Shetty`
+   quote: `The combination of passion and art is what makes someone a linchpin.`,
+   source: `Seth Godin`,
+   citation: `Linchpin`,
+   year: 2010
+
   }
 ];
 
@@ -46,10 +55,12 @@ const quotes = [
  * `getRandomQuote` function
 ***/
 
-// Math.floor rounds to nearst whole number
-// Math.random multiplies the length of items in quotes array
-// returns Math.random multiplied by the amount of items in quote arrray
-// use brackets to capture items in array
+/*
+ * Math.floor returns a number less than or equal to the length of items in quotes array
+ * Math.random multiplies the length of items in quotes array
+ * returns Math.random multiplied by the amount of items in quote arrray
+ * use brackets to capture items in array
+*/
 
 function getRandomQuote () { 
   let randomQuote = Math.floor(Math.random() * quotes.length); 
@@ -61,9 +72,12 @@ function getRandomQuote () {
  * `printQuote` function
 ***/
 
-// assigns variable to getRandomQuote 
-// assigns html to class="quote" and call it with dot notation
-// use getElementById to return reference with ID
+/* 
+ * assigns variable to getRandomQuote 
+ * assigns html to class="quote" and call it with dot notation
+ * use getElementById to return reference with ID
+ * use for-in to include items with class="citation" and class="year"
+*/
 
 function printQuote() {
 
@@ -71,6 +85,13 @@ function printQuote() {
   let html = `<p class='quote'>${presentQuote.quote}</p>
               <p class='source'>${presentQuote.source}
             `;
+  for ( let i in presentQuote) {
+    if (presentQuote[i] === presentQuote.citation) {
+      html += `<span class='citation'>${presentQuote.citation}</span>
+               <span class='year'>${presentQuote.year}</span>
+             `;
+    } 
+  }
   
   document.getElementById("quote-box").innerHTML = html;
 
